@@ -3,461 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MSBAi Module 1 Tracker — NYU Stern</title>
+<title>MSBAi Full-Year Tracker — NYU Stern</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --stern-purple: #57068c;
-  --stern-purple-light: #7b2fad;
-  --stern-purple-dark: #3d0066;
-  --stern-purple-glow: rgba(87,6,140,0.12);
-  --stern-purple-glow2: rgba(87,6,140,0.06);
-  --bg: #fafafa;
-  --bg-card: #ffffff;
-  --bg-dark: #0f0a18;
-  --border: #e8e0f0;
-  --border-light: #f0eaf6;
-  --text-0: #1a0e2e;
-  --text-1: #3d2a5c;
-  --text-2: #6b5a82;
-  --text-3: #9a8aad;
-  --green: #16a34a;
-  --green-bg: #dcfce7;
-  --yellow: #ca8a04;
-  --yellow-bg: #fef9c3;
-  --red: #dc2626;
-  --red-bg: #fee2e2;
-  --blue: #2563eb;
-  --blue-bg: #dbeafe;
-  --font: 'Inter', -apple-system, sans-serif;
-  --mono: 'JetBrains Mono', monospace;
-}
-
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text-0);
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.6;
-}
-a { color: var(--stern-purple); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-/* NAV */
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--bg-dark);
-  color: #fff;
-  padding: 0.75rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-}
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-.nav-logo {
-  width: 32px;
-  height: 32px;
-  background: var(--stern-purple);
-  border-radius: 6px;
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-}
-.nav-title {
-  font-weight: 600;
-  font-size: 0.92rem;
-  letter-spacing: -0.01em;
-}
-.nav-title span { color: var(--stern-purple-light); }
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-}
-.nav-links a {
-  color: rgba(255,255,255,0.6);
-  font-size: 0.78rem;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: #fff; text-decoration: none; }
-
-/* HERO */
-.hero {
-  background: linear-gradient(135deg, var(--bg-dark) 0%, #1a0e2e 50%, var(--stern-purple-dark) 100%);
-  color: #fff;
-  padding: 4rem 2rem 3rem;
-  text-align: center;
-}
-.hero h1 {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 0.6rem;
-}
-.hero h1 span { color: var(--stern-purple-light); }
-.hero-sub {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.6);
-  max-width: 540px;
-  margin: 0 auto 2rem;
-}
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-}
-.hero-stat-val {
-  font-size: 1.4rem;
-  font-weight: 800;
-}
-.hero-stat-label {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-top: 0.2rem;
-}
-
-/* PROGRESS BAR */
-.progress-section {
-  max-width: 1100px;
-  margin: -1.5rem auto 0;
-  padding: 0 1.5rem;
-  position: relative;
-  z-index: 10;
-}
-.progress-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem 2rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-}
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.8rem;
-}
-.progress-title {
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-.progress-pct {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--stern-purple);
-  font-weight: 600;
-}
-.progress-bar-bg {
-  height: 8px;
-  background: var(--border-light);
-  border-radius: 4px;
-  overflow: hidden;
-}
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--stern-purple), var(--stern-purple-light));
-  border-radius: 4px;
-  transition: width 0.6s ease;
-}
-
-/* MAIN */
-.main {
-  max-width: 1100px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
-}
-
-/* PHASE SECTION */
-.phase {
-  margin-bottom: 3rem;
-}
-.phase-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.8rem;
-  border-bottom: 2px solid var(--stern-purple);
-}
-.phase-badge {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--stern-purple);
-  padding: 0.3rem 0.7rem;
-  border-radius: 4px;
-}
-.phase-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.phase-dates {
-  font-size: 0.78rem;
-  color: var(--text-3);
-  margin-left: auto;
-}
-
-/* COURSE BLOCK */
-.course-block {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-}
-.course-header {
-  padding: 1rem 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  cursor: pointer;
-  transition: background 0.2s;
-  user-select: none;
-}
-.course-header:hover { background: var(--stern-purple-glow2); }
-.course-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.dot-purple { background: var(--stern-purple); }
-.dot-blue { background: var(--blue); }
-.dot-green { background: var(--green); }
-.course-name {
-  font-weight: 600;
-  font-size: 0.92rem;
-  flex: 1;
-}
-.course-prof {
-  font-size: 0.72rem;
-  color: var(--text-3);
-}
-.course-toggle {
-  font-size: 0.8rem;
-  color: var(--text-3);
-  transition: transform 0.3s;
-}
-.course-block.open .course-toggle { transform: rotate(180deg); }
-.course-body {
-  display: none;
-  padding: 0 1.25rem 1.25rem;
-  border-top: 1px solid var(--border-light);
-}
-.course-block.open .course-body { display: block; }
-
-/* TASK LIST */
-.task-list {
-  list-style: none;
-}
-.task-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.65rem;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid var(--border-light);
-  font-size: 0.82rem;
-}
-.task-item:last-child { border-bottom: none; }
-.task-check {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--border);
-  border-radius: 4px;
-  flex-shrink: 0;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  transition: all 0.2s;
-  margin-top: 1px;
-}
-.task-check:hover { border-color: var(--stern-purple); }
-.task-check.checked {
-  background: var(--stern-purple);
-  border-color: var(--stern-purple);
-}
-.task-check.checked::after {
-  content: '\2713';
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 700;
-}
-.task-item.done .task-text { text-decoration: line-through; color: var(--text-3); }
-.task-text { flex: 1; line-height: 1.5; }
-.task-text strong { font-weight: 600; }
-.task-due {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  font-weight: 500;
-  padding: 0.15rem 0.5rem;
-  border-radius: 3px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.due-upcoming { background: var(--yellow-bg); color: var(--yellow); }
-.due-soon { background: var(--red-bg); color: var(--red); }
-.due-done { background: var(--green-bg); color: var(--green); }
-.due-info { background: var(--blue-bg); color: var(--blue); }
-
-/* SCHEDULE TABLE */
-.schedule-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.78rem;
-  margin-top: 0.5rem;
-}
-.schedule-table th {
-  text-align: left;
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  padding: 0.5rem 0.75rem;
-  border-bottom: 2px solid var(--border);
-}
-.schedule-table td {
-  padding: 0.55rem 0.75rem;
-  border-bottom: 1px solid var(--border-light);
-  vertical-align: top;
-}
-.schedule-table tr:hover { background: var(--stern-purple-glow2); }
-.badge-zoom {
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  font-weight: 600;
-  background: var(--blue-bg);
-  color: var(--blue);
-  padding: 0.15rem 0.45rem;
-  border-radius: 3px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.badge-inperson {
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  font-weight: 600;
-  background: var(--stern-purple-glow);
-  color: var(--stern-purple);
-  padding: 0.15rem 0.45rem;
-  border-radius: 3px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* HIGH LEVEL MODULES */
-.hl-section {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-.hl-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-.hl-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1rem;
-  transition: border-color 0.2s;
-}
-.hl-card:hover { border-color: var(--stern-purple); }
-.hl-card.current { border-left: 3px solid var(--stern-purple); }
-.hl-card-num {
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-.hl-card-title {
-  font-weight: 600;
-  font-size: 0.85rem;
-  margin: 0.2rem 0;
-}
-.hl-card-dates {
-  font-size: 0.7rem;
-  color: var(--text-3);
-}
-.hl-card-courses {
-  font-size: 0.68rem;
-  color: var(--text-2);
-  margin-top: 0.4rem;
-  line-height: 1.5;
-}
-
-/* FOOTER */
-.footer {
-  background: var(--bg-dark);
-  color: rgba(255,255,255,0.4);
-  text-align: center;
-  padding: 1.5rem 2rem;
-  font-size: 0.68rem;
-  font-family: var(--mono);
-  letter-spacing: 0.03em;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hero-stats { gap: 1.5rem; }
-  .phase-dates { display: none; }
-  .course-prof { display: none; }
-}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="main">
 
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-brand">
     <div class="nav-logo">NYU</div>
-    <div class="nav-title"><span>MSBAi</span> Module 1 Tracker</div>
+    <div class="nav-title"><span>MSBAi</span> Full-Year Tracker</div>
   </div>
   <ul class="nav-links">
-    <li><a href="#pre-module">Pre-Module</a></li>
-    <li><a href="#in-person">In-Person</a></li>
-    <li><a href="#post-module">Post-Module</a></li>
-    <li><a href="#full-year">Full Year</a></li>
+    <li><a href="#module-1">M1</a></li>
+    <li><a href="#module-2">M2</a></li>
+    <li><a href="#module-3">M3</a></li>
+    <li><a href="#module-4">M4</a></li>
+    <li><a href="#module-5">M5</a></li>
+    <li><a href="#module-6">M6</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <h1>MSBAi Class of <span>2027</span></h1>
-  <p class="hero-sub">Module 1 — Your complete checklist, schedule, and assignment tracker for all three courses.</p>
+  <p class="hero-sub">Full-year academic tracker across all 6 modules — Pre-Module, In-Class, and Post-Module phases. Click any module to view the detailed schedule.</p>
   <div class="hero-stats">
-    <div><div class="hero-stat-val">3</div><div class="hero-stat-label">Courses</div></div>
-    <div><div class="hero-stat-val">Apr 6 – May 25</div><div class="hero-stat-label">Module 1 Span</div></div>
-    <div><div class="hero-stat-val">6</div><div class="hero-stat-label">Zoom Sessions</div></div>
-    <div><div class="hero-stat-val">6</div><div class="hero-stat-label">In-Person Days</div></div>
+    <div><div class="hero-stat-val">6</div><div class="hero-stat-label">Modules</div></div>
+    <div><div class="hero-stat-val">35</div><div class="hero-stat-label">Total Credits</div></div>
+    <div><div class="hero-stat-val">32</div><div class="hero-stat-label">In-Class Days</div></div>
+    <div><div class="hero-stat-val">Apr 2026 – May 2027</div><div class="hero-stat-label">Program Span</div></div>
   </div>
 </section>
 
@@ -465,7 +41,7 @@ a:hover { text-decoration: underline; }
 <div class="progress-section">
   <div class="progress-card">
     <div class="progress-header">
-      <span class="progress-title">Overall Module 1 Progress</span>
+      <span class="progress-title">Overall Year Progress</span>
       <span class="progress-pct" id="progressPct">0%</span>
     </div>
     <div class="progress-bar-bg">
@@ -474,310 +50,344 @@ a:hover { text-decoration: underline; }
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
 <div class="main">
 
-<!-- ═══════════ PRE-MODULE ═══════════ -->
-<section class="phase" id="pre-module">
-  <div class="phase-header">
-    <span class="phase-badge">Phase 1</span>
-    <span class="phase-title">Pre-Module</span>
-    <span class="phase-dates">April 6 – May 2, 2026</span>
+<!-- ═══════════ MODULE 1 ═══════════ -->
+<section class="module-card current" id="module-1">
+  <div class="module-head">
+    <span class="module-num">Module 1</span>
+    <span class="module-title">Summer 2026 — NYC</span>
+    <span class="module-loc">NYC</span>
+    <span class="module-dates">Apr 6 – May 29, 2026</span>
   </div>
+  <div class="module-body">
 
-  <!-- PYTHON BOOTCAMP -->
-  <div class="course-block open">
-    <div class="course-header" onclick="toggleCourse(this)">
-      <div class="course-dot dot-green"></div>
-      <div class="course-name">Python Bootcamp (Pre-Module Sessions)</div>
-      <div class="course-prof">Zoom | 5 Sessions</div>
-      <div class="course-toggle">&#9660;</div>
+    <div class="phase-block open">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge">Pre-Module</span>
+        <span class="phase-block-title">Prep &amp; Async Coursework</span>
+        <span class="phase-block-dates">Apr 6 – May 2</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot" style="background:var(--stern-purple);"></span><span class="name">Intro to Analytics and AI</span><span class="cred">2 cr</span><span class="when">Apr 6 – May 2</span></div>
+        <div class="course-line"><span class="dot" style="background:var(--stern-purple);"></span><span class="name">Digital Marketing Analytics</span><span class="cred">2 cr</span><span class="when">Apr 6 – May 2</span></div>
+        <div class="course-line"><span class="dot" style="background:var(--blue);"></span><span class="name">Foundations of Statistics Using R</span><span class="cred">1 cr</span><span class="when">Apr 6 – May 2</span></div>
+      </div>
     </div>
-    <div class="course-body">
-      <p style="font-size:0.78rem;color:var(--text-2);margin-bottom:0.8rem;">A 5-session bootcamp covering Python fundamentals. Each session builds on the last.</p>
-      <table class="schedule-table">
-        <thead><tr><th>Date</th><th>Time (ET)</th><th>Topic</th><th>Format</th></tr></thead>
-        <tbody>
-          <tr><td>Mon, Apr 13</td><td>12:00 – 1:30 PM</td><td>Session 1</td><td><span class="badge-zoom">Zoom</span></td></tr>
-          <tr><td>Wed, Apr 15</td><td>12:00 – 1:30 PM</td><td>Session 2</td><td><span class="badge-zoom">Zoom</span></td></tr>
-          <tr><td>Mon, Apr 20</td><td>12:00 – 1:30 PM</td><td>Session 3</td><td><span class="badge-zoom">Zoom</span></td></tr>
-          <tr><td>Wed, Apr 22</td><td>12:00 – 1:30 PM</td><td>Session 4</td><td><span class="badge-zoom">Zoom</span></td></tr>
-          <tr><td>Mon, Apr 27</td><td>12:00 – 1:30 PM</td><td>Session 5</td><td><span class="badge-zoom">Zoom</span></td></tr>
-        </tbody>
-      </table>
-      <ul class="task-list" style="margin-top:0.8rem;">
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend Session 1 — Apr 13</div><span class="task-due due-upcoming">Apr 13</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend Session 2 — Apr 15</div><span class="task-due due-upcoming">Apr 15</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend Session 3 — Apr 20</div><span class="task-due due-upcoming">Apr 20</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend Session 4 — Apr 22</div><span class="task-due due-upcoming">Apr 22</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend Session 5 — Apr 27</div><span class="task-due due-upcoming">Apr 27</span></li>
-      </ul>
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge in">In-Class</span>
+        <span class="phase-block-title">NYC — NYU Stern KMC</span>
+        <span class="phase-block-dates">May 3 – May 9</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot" style="background:var(--stern-purple);"></span><span class="name">Orientation</span><span class="cred">—</span><span class="when">May 3</span></div>
+        <div class="course-line"><span class="dot" style="background:var(--stern-purple);"></span><span class="name">Intro to Analytics and AI</span><span class="cred">2 cr</span><span class="when">May 4 – May 5</span></div>
+        <div class="course-line"><span class="dot" style="background:var(--stern-purple);"></span><span class="name">Digital Marketing Analytics</span><span class="cred">2 cr</span><span class="when">May 6 – May 7</span></div>
+        <div class="course-line"><span class="dot" style="background:var(--blue);"></span><span class="name">Foundations of Statistics Using R</span><span class="cred">1 cr</span><span class="when">May 8 – May 9</span></div>
+      </div>
     </div>
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge post">Post-Module</span>
+        <span class="phase-block-title">Final Assignments &amp; Exams</span>
+        <span class="phase-block-dates">May 10 – May 29</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot" style="background:var(--stern-purple);"></span><span class="name">Intro to Analytics and AI — Post-Module Due</span><span class="cred">2 cr</span><span class="when">May 29</span></div>
+        <div class="course-line"><span class="dot" style="background:var(--stern-purple);"></span><span class="name">Digital Marketing Analytics — Post-Module Due</span><span class="cred">2 cr</span><span class="when">May 29</span></div>
+        <div class="course-line"><span class="dot" style="background:var(--blue);"></span><span class="name">Foundations of Statistics Using R — Post-Module Due</span><span class="cred">1 cr</span><span class="when">May 29</span></div>
+      </div>
+    </div>
+
   </div>
-
-  <!-- FOUNDATIONS OF STATS USING R -->
-  <div class="course-block open">
-    <div class="course-header" onclick="toggleCourse(this)">
-      <div class="course-dot dot-blue"></div>
-      <div class="course-name">Foundations of Statistics Using R</div>
-      <div class="course-prof">Prof. Kristen Sosulski / Peter Lakner</div>
-      <div class="course-toggle">&#9660;</div>
-    </div>
-    <div class="course-body">
-      <p style="font-size:0.78rem;color:var(--text-2);margin-bottom:0.5rem;"><strong>Important:</strong> Download all R packages before Apr 9. Visit: <a href="http://rcoding.becomingvisual.com/getting-started-withr.html#assignment-1a" target="_blank">R Course Site</a></p>
-
-      <p style="font-size:0.72rem;color:var(--text-3);margin-bottom:0.8rem;font-weight:600;">PART 1: R PROGRAMMING (3 Zoom sessions)</p>
-      <table class="schedule-table">
-        <thead><tr><th>Date</th><th>Time (ET)</th><th>Topics</th><th>Format</th></tr></thead>
-        <tbody>
-          <tr><td>Wed, Apr 9</td><td>7:30 – 9:00 PM</td><td>Lesson 1: Getting started with R — console, operators, functions</td><td><span class="badge-zoom">Zoom</span></td></tr>
-          <tr><td>Wed, Apr 16</td><td>7:30 – 9:00 PM</td><td>Lesson 3: R packages, scripts, RMarkdown, importing data</td><td><span class="badge-zoom">Zoom</span></td></tr>
-          <tr><td>Wed, Apr 22</td><td>7:30 – 9:00 PM</td><td>Lesson 5: Statistical graphs — scatter, box, histograms</td><td><span class="badge-zoom">Zoom</span></td></tr>
-        </tbody>
-      </table>
-
-      <p style="font-size:0.72rem;color:var(--text-3);margin:0.8rem 0 0.5rem;font-weight:600;">PART 2: STATISTICS (3 Zoom sessions)</p>
-      <table class="schedule-table">
-        <thead><tr><th>Date</th><th>Time (ET)</th><th>Topics</th><th>Format</th></tr></thead>
-        <tbody>
-          <tr><td>Thu, Apr 24</td><td>7:30 – 9:00 PM</td><td>Populations, samples, probability, conditional probability</td><td><span class="badge-zoom">Zoom</span></td></tr>
-          <tr><td>Mon, Apr 27</td><td>7:30 – 9:00 PM</td><td>Continuous distributions, Central Limit Theorem</td><td><span class="badge-zoom">Zoom</span></td></tr>
-          <tr><td>Fri, May 1</td><td>7:30 – 9:00 PM</td><td>Hypothesis testing, sample size, p-values</td><td><span class="badge-zoom">Zoom</span></td></tr>
-        </tbody>
-      </table>
-
-      <ul class="task-list" style="margin-top:1rem;">
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Download R & RStudio</strong> and all required packages</div><span class="task-due due-soon">Before Apr 9</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend R Session 1 (Apr 9) + Complete <strong>R Assignment 1</strong></div><span class="task-due due-upcoming">Apr 9</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Complete <strong>R Assignment 2</strong> — Data structures, variables, data types</div><span class="task-due due-upcoming">Before Apr 16</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend R Session 2 (Apr 16) + Complete <strong>R Assignment 3</strong></div><span class="task-due due-upcoming">Apr 16</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Complete <strong>R Assignment 4</strong> — Descriptive statistics</div><span class="task-due due-upcoming">Before Apr 22</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend R Session 3 (Apr 22) + Complete <strong>R Assignment 5</strong></div><span class="task-due due-upcoming">Apr 22</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Complete <strong>R Assignment 6</strong> — Manipulating data sets</div><span class="task-due due-upcoming">Before May 1</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend Stats Session 1 (Apr 24) — Watch <strong>Videos 1 & 2</strong> before</div><span class="task-due due-upcoming">Apr 24</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Watch <strong>Stats Videos 3–7</strong> before Apr 27</div><span class="task-due due-upcoming">Apr 27</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend Stats Session 2 (Apr 27)</div><span class="task-due due-upcoming">Apr 27</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Watch <strong>Stats Videos 8–16</strong> before May 1</div><span class="task-due due-upcoming">May 1</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend Stats Session 3 (May 1)</div><span class="task-due due-upcoming">May 1</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Submit all 6 R assignments</strong> (40% of grade)</div><span class="task-due due-soon">May 2</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- INTRO TO ANALYTICS & AI -->
-  <div class="course-block open">
-    <div class="course-header" onclick="toggleCourse(this)">
-      <div class="course-dot dot-purple"></div>
-      <div class="course-name">Intro to Analytics and AI</div>
-      <div class="course-prof">Prof. Foster Provost</div>
-      <div class="course-toggle">&#9660;</div>
-    </div>
-    <div class="course-body">
-      <p style="font-size:0.78rem;color:var(--text-2);margin-bottom:0.8rem;">Textbook: <em>Data Science for Business</em> — Provost & Fawcett (2013). <strong>No GenAI allowed on assignments or exam.</strong></p>
-      <ul class="task-list">
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Assignment 1:</strong> Design a data plan for customer churn problem. Do this <strong>before reading any material</strong>. No GenAI.</div><span class="task-due due-soon">Apr 20</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Watch <strong>Videos 1–3</strong> (Intro to Business Analytics, MegaTelco, Applying Data Analytics)</div><span class="task-due due-upcoming">Before Ch. 1</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Read <strong>Ch. 1–2</strong> + watch Videos 1–4</div><span class="task-due due-upcoming">Apr 16</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Read <strong>Ch. 3</strong> (watch Videos 5–6 before)</div><span class="task-due due-upcoming">Apr 20</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Read <strong>Ch. 4–5</strong></div><span class="task-due due-upcoming">Apr 24</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Read <strong>Ch. 6–7</strong></div><span class="task-due due-upcoming">Apr 28</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">🎯 <strong>Self-deadline: Chapters 1–7 complete</strong> — 2 days buffer before May 2</div><span class="task-due due-soon">Apr 30</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Assignment 2:</strong> Based on Chapters 1–3</div><span class="task-due due-soon">May 2</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Assignment 3:</strong> Based on Chapters 4–6</div><span class="task-due due-soon">May 2</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- DIGITAL MARKETING ANALYTICS -->
-  <div class="course-block open">
-    <div class="course-header" onclick="toggleCourse(this)">
-      <div class="course-dot dot-purple"></div>
-      <div class="course-name">Digital Marketing Analytics</div>
-      <div class="course-prof">Prof. Anindya Ghose</div>
-      <div class="course-toggle">&#9660;</div>
-    </div>
-    <div class="course-body">
-      <p style="font-size:0.78rem;color:var(--text-2);margin-bottom:0.8rem;">Textbook: <em>Tap: Unlocking the Mobile Economy</em> — Ghose (2017). Uses STATA or R for regressions.</p>
-      <ul class="task-list">
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Watch all <strong>STATA tutorial videos</strong> on Brightspace</div><span class="task-due due-upcoming">Before Apr 23</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>STATA Workshop</strong> (pre-module tutorial on regressions)</div><span class="task-due due-soon">Apr 23, 5–7 PM ET</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Read <strong>BBVA Compass</strong> case study (Harvard Business School)</div><span class="task-due due-upcoming">Before May 2</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Pre-Module Assignment:</strong> Cloverleaf dataset — build OLS regression in STATA predicting click-through rate. Interpret coefficients.</div><span class="task-due due-soon">May 2</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>BBVA Group Assignment:</strong> Answer case questions (groups of 5 or individual). ~1/2 page each question.</div><span class="task-due due-soon">May 2</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Familiarize with <strong>Air France</strong> case data + review <strong>Pivot Tables</strong> in Excel (no write-up needed)</div><span class="task-due due-upcoming">Before May 6</span></li>
-      </ul>
-    </div>
+  <div class="view-full">
+    <a href="module-1.html" target="_blank">View Full Schedule <span class="arrow">&rarr;</span></a>
   </div>
 </section>
 
-<!-- ═══════════ IN-PERSON MODULE ═══════════ -->
-<section class="phase" id="in-person">
-  <div class="phase-header">
-    <span class="phase-badge">Phase 2</span>
-    <span class="phase-title">In-Person Module (NYC)</span>
-    <span class="phase-dates">May 3 – May 9, 2026</span>
+<!-- ═══════════ MODULE 2 ═══════════ -->
+<section class="module-card" id="module-2">
+  <div class="module-head">
+    <span class="module-num">Module 2</span>
+    <span class="module-title">Summer 2026 — NYC</span>
+    <span class="module-loc">NYC</span>
+    <span class="module-dates">May 26 – Jul 12, 2026</span>
   </div>
+  <div class="module-body">
 
-  <div class="course-block open">
-    <div class="course-header" onclick="toggleCourse(this)">
-      <div class="course-dot dot-purple"></div>
-      <div class="course-name">Full Week Schedule — NYU Stern KMC</div>
-      <div class="course-prof">In-Person | 7 Days</div>
-      <div class="course-toggle">&#9660;</div>
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge">Pre-Module</span>
+        <span class="phase-block-title">Prep &amp; Async Coursework</span>
+        <span class="phase-block-dates">May 26 – Jun 7</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">Databases for Business Analytics</span><span class="cred">1 cr</span><span class="when">May 26 – Jun 7</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Big Data</span><span class="cred">1 cr</span><span class="when">May 26 – Jun 7</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Dealing with Data Using Python</span><span class="cred">1 cr</span><span class="when">May 26 – Jun 7</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Decision Models</span><span class="cred">2 cr</span><span class="when">May 26 – Jun 7</span></div>
+      </div>
     </div>
-    <div class="course-body">
-      <table class="schedule-table">
-        <thead><tr><th>Day</th><th>Time</th><th>Event</th><th>Location</th></tr></thead>
-        <tbody>
-          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Sunday, May 3 — ORIENTATION</td></tr>
-          <tr><td></td><td>11:30 AM – 12:30 PM</td><td>Arrival, Registration, Headshots</td><td><span class="badge-inperson">KMC 5-100</span></td></tr>
-          <tr><td></td><td>12:30 – 1:30 PM</td><td>Lunch & Admissions Welcome</td><td><span class="badge-inperson">KMC 5-100</span></td></tr>
-          <tr><td></td><td>1:30 – 3:15 PM</td><td>Welcome + Student Introductions</td><td><span class="badge-inperson">KMC 1-70</span></td></tr>
-          <tr><td></td><td>3:15 – 4:45 PM</td><td>Academic Leadership Welcome (Ghose, Pinedo)</td><td><span class="badge-inperson">KMC 1-70</span></td></tr>
-          <tr><td></td><td>5:30 – 7:30 PM</td><td>Welcome Reception</td><td><span class="badge-inperson">Rosa Mexicano</span></td></tr>
 
-          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Monday, May 4 — Intro to Analytics & AI (Day 1) | Prof. Provost</td></tr>
-          <tr><td></td><td>8:00 – 8:30 AM</td><td>Breakfast</td><td><span class="badge-inperson">KMC 5-100</span></td></tr>
-          <tr><td></td><td>8:30 AM – 5:30 PM</td><td>Full day: Problem Formulation, Model Performance, Predictive Analytics</td><td><span class="badge-inperson">T415</span></td></tr>
-          <tr><td></td><td>Evening</td><td>Free</td><td></td></tr>
-
-          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Tuesday, May 5 — Intro to Analytics & AI (Day 2) | Prof. Provost</td></tr>
-          <tr><td></td><td>8:30 AM – 5:30 PM</td><td>Analytical Engineering, GenAI/LLMs, A/B Testing, Data Science Strategy</td><td><span class="badge-inperson">T415</span></td></tr>
-          <tr><td></td><td>5:45 – 7:00 PM</td><td>Speed Spotlight (Last Name A–K)</td><td><span class="badge-inperson">KMC 1-70</span></td></tr>
-
-          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Wednesday, May 6 — Digital Marketing Analytics (Day 1) | Prof. Ghose</td></tr>
-          <tr><td></td><td>8:30 AM – 5:30 PM</td><td>Digital landscape, AI in marketing, Air France case, BBVA discussion</td><td><span class="badge-inperson">KMC 1-70</span></td></tr>
-          <tr><td></td><td>5:45 – 7:00 PM</td><td>Speed Spotlight (Last Name L–Z)</td><td><span class="badge-inperson">KMC 1-70</span></td></tr>
-
-          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Thursday, May 7 — Digital Marketing Analytics (Day 2) | Prof. Ghose</td></tr>
-          <tr><td></td><td>8:30 AM – 5:30 PM</td><td>Text mining, mobile economy, AI personalization, mobile app exercise</td><td><span class="badge-inperson">KMC 5-90</span></td></tr>
-          <tr><td></td><td>6:00 – 8:00 PM</td><td>Capstone Pitch Session</td><td><span class="badge-inperson">KMC 5-90</span></td></tr>
-
-          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Friday, May 8 — Foundations of Statistics Using R (Day 1) | Prof. Sosulski</td></tr>
-          <tr><td></td><td>8:30 AM – 5:30 PM</td><td>Scripts, loops, reshaping data, functions, Shiny apps, RMarkdown</td><td><span class="badge-inperson">KMC 5-90</span></td></tr>
-          <tr><td></td><td>Evening</td><td>Free</td><td></td></tr>
-
-          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Saturday, May 9 — Foundations of Statistics Using R (Day 2) | Prof. Lakner</td></tr>
-          <tr><td></td><td>8:30 AM – 5:30 PM</td><td>Linear/multiple regression, logistic regression, Lasso, dummy vars, review</td><td><span class="badge-inperson">KMC 1-70</span></td></tr>
-          <tr><td></td><td>12:30 PM</td><td>Lunch / Module Wrap-up</td><td><span class="badge-inperson">Cantor KMC 1-175</span></td></tr>
-        </tbody>
-      </table>
-
-      <ul class="task-list" style="margin-top:1rem;">
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Orientation</strong> — Sunday May 3</div><span class="task-due due-info">May 3</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Intro to Analytics & AI</strong> Day 1 — Monday May 4</div><span class="task-due due-info">May 4</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Intro to Analytics & AI</strong> Day 2 — Tuesday May 5</div><span class="task-due due-info">May 5</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Digital Marketing Analytics</strong> Day 1 — Wednesday May 6</div><span class="task-due due-info">May 6</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Digital Marketing Analytics</strong> Day 2 — Thursday May 7</div><span class="task-due due-info">May 7</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Stats Using R</strong> Day 1 — Friday May 8</div><span class="task-due due-info">May 8</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Stats Using R</strong> Day 2 — Saturday May 9</div><span class="task-due due-info">May 9</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Submit in-class exercises from <strong>Stats Using R</strong></div><span class="task-due due-info">May 9</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Capstone Pitch Session</strong> — Thursday May 7, 6–8 PM</div><span class="task-due due-info">May 7</span></li>
-      </ul>
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge in">In-Class</span>
+        <span class="phase-block-title">NYC — In-Person</span>
+        <span class="phase-block-dates">Jun 8 – Jun 12</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">Databases for Business Analytics</span><span class="cred">1 cr</span><span class="when">Jun 8</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Big Data</span><span class="cred">1 cr</span><span class="when">Jun 9</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Dealing with Data Using Python</span><span class="cred">1 cr</span><span class="when">Jun 10</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Decision Models</span><span class="cred">2 cr</span><span class="when">Jun 11 – Jun 12</span></div>
+      </div>
     </div>
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge post">Post-Module</span>
+        <span class="phase-block-title">Final Assignments &amp; Exams</span>
+        <span class="phase-block-dates">Jun 13 – Jul 12</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">All Module 2 Courses — Post-Module Due</span><span class="cred">5 cr</span><span class="when">Jul 12</span></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="view-full">
+    <a href="module-2.html" target="_blank">View Full Schedule <span class="arrow">&rarr;</span></a>
   </div>
 </section>
 
-<!-- ═══════════ POST-MODULE ═══════════ -->
-<section class="phase" id="post-module">
-  <div class="phase-header">
-    <span class="phase-badge">Phase 3</span>
-    <span class="phase-title">Post-Module</span>
-    <span class="phase-dates">May 10 – May 25, 2026</span>
+<!-- ═══════════ MODULE 3 ═══════════ -->
+<section class="module-card" id="module-3">
+  <div class="module-head">
+    <span class="module-num">Module 3</span>
+    <span class="module-title">Summer 2026 — NYC</span>
+    <span class="module-loc">NYC</span>
+    <span class="module-dates">Jul 13 – Sep 27, 2026</span>
   </div>
+  <div class="module-body">
 
-  <div class="course-block open">
-    <div class="course-header" onclick="toggleCourse(this)">
-      <div class="course-dot dot-purple"></div>
-      <div class="course-name">Intro to Analytics and AI — Post-Module</div>
-      <div class="course-prof">Prof. Foster Provost</div>
-      <div class="course-toggle">&#9660;</div>
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge">Pre-Module</span>
+        <span class="phase-block-title">Prep &amp; Async Coursework</span>
+        <span class="phase-block-dates">Jul 13 – Aug 16</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">Machine Learning</span><span class="cred">3 cr</span><span class="when">Jul 13 – Aug 16</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Data Driven Decision Making</span><span class="cred">2 cr</span><span class="when">Jul 13 – Aug 16</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Foundations of AI Agents</span><span class="cred">1 cr</span><span class="when">Jul 13 – Aug 16</span></div>
+      </div>
     </div>
-    <div class="course-body">
-      <ul class="task-list">
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Read <strong>Chapters 7–8, 11, 13, 14</strong> of Data Science for Business</div><span class="task-due due-upcoming">Before May 25</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Read supplemental readings on Brightspace (AI Strategy, GenAI, etc.)</div><span class="task-due due-upcoming">Optional</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Assignment 4:</strong> Based on Chapters 7–8, 11, 13, 14 (50% of assignments grade)</div><span class="task-due due-soon">May 25</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Final Exam</strong> — Covers all material (40% of total grade)</div><span class="task-due due-soon">May 25</span></li>
-      </ul>
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge in">In-Class</span>
+        <span class="phase-block-title">NYC — In-Person</span>
+        <span class="phase-block-dates">Aug 17 – Aug 22</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">Machine Learning</span><span class="cred">3 cr</span><span class="when">Aug 17 – Aug 19</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Data Driven Decision Making</span><span class="cred">2 cr</span><span class="when">Aug 20 – Aug 21</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Foundations of AI Agents</span><span class="cred">1 cr</span><span class="when">Aug 22</span></div>
+      </div>
     </div>
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge post">Post-Module</span>
+        <span class="phase-block-title">Final Assignments &amp; Exams</span>
+        <span class="phase-block-dates">Aug 23 – Sep 27</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">All Module 3 Courses — Post-Module Due</span><span class="cred">6 cr</span><span class="when">Sep 27</span></div>
+      </div>
+    </div>
+
   </div>
-
-  <div class="course-block open">
-    <div class="course-header" onclick="toggleCourse(this)">
-      <div class="course-dot dot-purple"></div>
-      <div class="course-name">Digital Marketing Analytics — Post-Module</div>
-      <div class="course-prof">Prof. Anindya Ghose</div>
-      <div class="course-toggle">&#9660;</div>
-    </div>
-    <div class="course-body">
-      <ul class="task-list">
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Individual Assignment:</strong> Hands-on econometric analysis with dataset using R or STATA (~2 hrs)</div><span class="task-due due-soon">May 25</span></li>
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Individual Exam:</strong> MCQ (18pts) + True/False (26pts) + Short Answer (6pts). Open book/notes.</div><span class="task-due due-soon">May 25</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="course-block open">
-    <div class="course-header" onclick="toggleCourse(this)">
-      <div class="course-dot dot-blue"></div>
-      <div class="course-name">Foundations of Statistics Using R — Post-Module</div>
-      <div class="course-prof">Prof. Peter Lakner</div>
-      <div class="course-toggle">&#9660;</div>
-    </div>
-    <div class="course-body">
-      <ul class="task-list">
-        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Individual Timed Statistics Exam</strong> (50% of total grade)</div><span class="task-due due-soon">May 25 at 11:55 PM</span></li>
-      </ul>
-    </div>
+  <div class="view-full">
+    <a href="module-3.html" target="_blank">View Full Schedule <span class="arrow">&rarr;</span></a>
   </div>
 </section>
 
-<!-- ═══════════ FULL YEAR OVERVIEW ═══════════ -->
-<section class="hl-section" id="full-year">
-  <div class="phase-header">
-    <span class="phase-badge">Overview</span>
-    <span class="phase-title">Full Year — MSBAi Class of 2027</span>
+<!-- ═══════════ MODULE 4 ═══════════ -->
+<section class="module-card" id="module-4">
+  <div class="module-head">
+    <span class="module-num">Module 4</span>
+    <span class="module-title">Fall 2026 — NYC</span>
+    <span class="module-loc">NYC</span>
+    <span class="module-dates">Sep 28 – Dec 20, 2026</span>
   </div>
-  <p style="font-size:0.82rem;color:var(--text-2);margin-bottom:1rem;">35 credits across 6 modules + capstone. Dates subject to change.</p>
+  <div class="module-body">
 
-  <div class="hl-grid">
-    <div class="hl-card current">
-      <div class="hl-card-num">Module 1 — Current</div>
-      <div class="hl-card-title">Summer 2026</div>
-      <div class="hl-card-dates">Apr 6 – May 25</div>
-      <div class="hl-card-courses">Intro to Analytics & AI, Digital Marketing Analytics, Foundations of Stats Using R</div>
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge">Pre-Module</span>
+        <span class="phase-block-title">Prep &amp; Async Coursework</span>
+        <span class="phase-block-dates">Sep 28 – Nov 1</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">Operations Analytics</span><span class="cred">2 cr</span><span class="when">Sep 28 – Nov 1</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Decision Under Risk</span><span class="cred">2 cr</span><span class="when">Sep 28 – Nov 1</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Data Visualization</span><span class="cred">1 cr</span><span class="when">Sep 28 – Nov 1</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Network Analytics</span><span class="cred">1 cr</span><span class="when">Sep 28 – Nov 1</span></div>
+      </div>
     </div>
-    <div class="hl-card">
-      <div class="hl-card-num">Module 2</div>
-      <div class="hl-card-title">Summer 2026</div>
-      <div class="hl-card-dates">May 25 – Jul 12</div>
-      <div class="hl-card-courses">Databases for Business Analytics, Big Data, Dealing with Data Using Python, Decision Models</div>
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge in">In-Class</span>
+        <span class="phase-block-title">NYC — In-Person</span>
+        <span class="phase-block-dates">Nov 2 – Nov 7</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">Operations Analytics</span><span class="cred">2 cr</span><span class="when">Nov 2 – Nov 3</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Decision Under Risk</span><span class="cred">2 cr</span><span class="when">Nov 3 – Nov 5</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Data Visualization</span><span class="cred">1 cr</span><span class="when">Nov 5 – Nov 6</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Network Analytics</span><span class="cred">1 cr</span><span class="when">Nov 7</span></div>
+      </div>
     </div>
-    <div class="hl-card">
-      <div class="hl-card-num">Module 3</div>
-      <div class="hl-card-title">Summer 2026</div>
-      <div class="hl-card-dates">Jul 13 – Sep 27</div>
-      <div class="hl-card-courses">Machine Learning, Data Driven Decision Making, Foundations of AI Agents</div>
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge post">Post-Module</span>
+        <span class="phase-block-title">Final Assignments &amp; Exams</span>
+        <span class="phase-block-dates">Nov 8 – Dec 20</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">All Module 4 Courses — Post-Module Due</span><span class="cred">6 cr</span><span class="when">Dec 20</span></div>
+      </div>
     </div>
-    <div class="hl-card">
-      <div class="hl-card-num">Module 4</div>
-      <div class="hl-card-title">Fall 2026</div>
-      <div class="hl-card-dates">Sep 28 – Dec 20</div>
-      <div class="hl-card-courses">Operations Analytics, Decision Under Risk, Data Visualization, Network Analytics</div>
+
+  </div>
+  <div class="view-full">
+    <a href="module-4.html" target="_blank">View Full Schedule <span class="arrow">&rarr;</span></a>
+  </div>
+</section>
+
+<!-- ═══════════ MODULE 5 ═══════════ -->
+<section class="module-card" id="module-5">
+  <div class="module-head">
+    <span class="module-num">Module 5</span>
+    <span class="module-title">Spring 2027 — Abu Dhabi</span>
+    <span class="module-loc abu">Abu Dhabi</span>
+    <span class="module-dates">Feb 1 – Apr 18, 2027</span>
+  </div>
+  <div class="module-body">
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge">Pre-Module</span>
+        <span class="phase-block-title">Prep &amp; Async Coursework</span>
+        <span class="phase-block-dates">Feb 1 – Mar 14</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">AI and Recommender Systems</span><span class="cred">2 cr</span><span class="when">Feb 1 – Mar 14</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Modern Artificial Intelligence</span><span class="cred">2 cr</span><span class="when">Feb 1 – Mar 14</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Revenue Management &amp; Pricing</span><span class="cred">2 cr</span><span class="when">Feb 1 – Mar 14</span></div>
+      </div>
     </div>
-    <div class="hl-card">
-      <div class="hl-card-num">Module 5</div>
-      <div class="hl-card-title">Spring 2027</div>
-      <div class="hl-card-dates">Feb 1 – Apr 18</div>
-      <div class="hl-card-courses">AI & Recommender Systems, Modern Artificial Intelligence, Revenue Management & Pricing</div>
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge in">In-Class</span>
+        <span class="phase-block-title">Abu Dhabi — In-Person</span>
+        <span class="phase-block-dates">Mar 15 – Mar 20</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">AI and Recommender Systems</span><span class="cred">2 cr</span><span class="when">Mar 15 – Mar 16</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Modern Artificial Intelligence</span><span class="cred">2 cr</span><span class="when">Mar 17 – Mar 18</span></div>
+        <div class="course-line"><span class="dot"></span><span class="name">Revenue Management &amp; Pricing</span><span class="cred">2 cr</span><span class="when">Mar 19 – Mar 20</span></div>
+      </div>
     </div>
-    <div class="hl-card">
-      <div class="hl-card-num">Module 6 + Capstone</div>
-      <div class="hl-card-title">Summer 2027</div>
-      <div class="hl-card-dates">Apr 19 – Jul 5</div>
-      <div class="hl-card-courses">AI in Media, Capstone Project (6 credits)</div>
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge post">Post-Module</span>
+        <span class="phase-block-title">Final Assignments &amp; Exams</span>
+        <span class="phase-block-dates">Mar 21 – Apr 18</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">All Module 5 Courses — Post-Module Due</span><span class="cred">6 cr</span><span class="when">Apr 18</span></div>
+      </div>
     </div>
+
+  </div>
+  <div class="view-full">
+    <a href="module-5.html" target="_blank">View Full Schedule <span class="arrow">&rarr;</span></a>
+  </div>
+</section>
+
+<!-- ═══════════ MODULE 6 ═══════════ -->
+<section class="module-card" id="module-6">
+  <div class="module-head">
+    <span class="module-num">Module 6</span>
+    <span class="module-title">Summer 2027 — Capstone</span>
+    <span class="module-loc">NYC</span>
+    <span class="module-dates">Apr 19 – May 11, 2027</span>
+  </div>
+  <div class="module-body">
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge">Pre-Module</span>
+        <span class="phase-block-title">Capstone Preparation</span>
+        <span class="phase-block-dates">Apr 19</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">Capstone</span><span class="cred">6 cr</span><span class="when">Apr 19</span></div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge in">In-Class</span>
+        <span class="phase-block-title">Capstone Presentation</span>
+        <span class="phase-block-dates">May 10</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">Capstone — Final Presentation</span><span class="cred">6 cr</span><span class="when">May 10</span></div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-block-head" onclick="togglePhase(this)">
+        <span class="phase-block-badge post">Post-Module</span>
+        <span class="phase-block-title">Capstone Final Submission</span>
+        <span class="phase-block-dates">May 11</span>
+        <span class="chev">&#9660;</span>
+      </div>
+      <div class="phase-block-body">
+        <div class="course-line"><span class="dot"></span><span class="name">Capstone — Final Deliverable Due</span><span class="cred">6 cr</span><span class="when">May 11</span></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="view-full">
+    <a href="module-6.html" target="_blank">View Full Schedule <span class="arrow">&rarr;</span></a>
   </div>
 </section>
 
@@ -785,53 +395,11 @@ a:hover { text-decoration: underline; }
 
 <!-- FOOTER -->
 <footer class="footer">
-  NYU Stern MSBAi Class of 2027 &mdash; Module 1 Academic Tracker &mdash; Daivik Suresh
+  NYU Stern MSBAi Class of 2027 &mdash; Full-Year Tracker &mdash; Daivik Suresh
+  <br>
+  <span style="opacity:0.6;font-size:0.65rem;">All dates from the official MSBAi curriculum schedule. Subject to change.</span>
 </footer>
 
-<!-- JS -->
-<script>
-function toggleCourse(header) {
-  header.parentElement.classList.toggle('open');
-}
-
-function toggleCheck(el) {
-  el.classList.toggle('checked');
-  el.closest('.task-item').classList.toggle('done');
-  updateProgress();
-  saveState();
-}
-
-function updateProgress() {
-  const total = document.querySelectorAll('.task-check').length;
-  const checked = document.querySelectorAll('.task-check.checked').length;
-  const pct = Math.round((checked / total) * 100);
-  document.getElementById('progressPct').textContent = pct + '%';
-  document.getElementById('progressBar').style.width = pct + '%';
-}
-
-function saveState() {
-  const checks = [];
-  document.querySelectorAll('.task-check').forEach((el, i) => {
-    checks.push(el.classList.contains('checked'));
-  });
-  localStorage.setItem('msbai-tracker', JSON.stringify(checks));
-}
-
-function loadState() {
-  const saved = localStorage.getItem('msbai-tracker');
-  if (saved) {
-    const checks = JSON.parse(saved);
-    document.querySelectorAll('.task-check').forEach((el, i) => {
-      if (checks[i]) {
-        el.classList.add('checked');
-        el.closest('.task-item').classList.add('done');
-      }
-    });
-  }
-  updateProgress();
-}
-
-loadState();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
