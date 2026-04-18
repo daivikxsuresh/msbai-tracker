@@ -1,9 +1,10 @@
 /* ══════════════════════════════════════════════════════════
    MSBAi Full-Year Tracker — Shared JS
-   State is persisted per-page in localStorage.
-   Keyed by data-page attribute on <body> so each module
-   has independent checkbox state.
+   State is stored by task-text ID in a single localStorage
+   key so checkboxes sync across index.html and module pages.
 ══════════════════════════════════════════════════════════ */
+
+const STORAGE_KEY = 'msbai-tracker-tasks';
 
 function toggleCourse(header) {
   header.parentElement.classList.toggle('open');
@@ -20,9 +21,14 @@ function toggleCheck(el) {
   saveState();
 }
 
-function storageKey() {
-  const page = document.body.dataset.page || 'main';
-  return 'msbai-tracker-' + page;
+function taskId(checkEl) {
+  const textEl = checkEl.closest('.task-item')?.querySelector('.task-text');
+  if (!textEl) return null;
+  return textEl.textContent.trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 80);
 }
 
 function updateProgress() {
@@ -52,26 +58,23 @@ function updateProgress() {
 }
 
 function saveState() {
-  const checks = [];
+  const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   document.querySelectorAll('.task-check').forEach(el => {
-    checks.push(el.classList.contains('checked'));
+    const id = taskId(el);
+    if (id) state[id] = el.classList.contains('checked');
   });
-  localStorage.setItem(storageKey(), JSON.stringify(checks));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
 function loadState() {
-  const saved = localStorage.getItem(storageKey());
-  if (saved) {
-    try {
-      const checks = JSON.parse(saved);
-      document.querySelectorAll('.task-check').forEach((el, i) => {
-        if (checks[i]) {
-          el.classList.add('checked');
-          el.closest('.task-item').classList.add('done');
-        }
-      });
-    } catch (e) { /* ignore parse errors */ }
-  }
+  const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  document.querySelectorAll('.task-check').forEach(el => {
+    const id = taskId(el);
+    if (id && state[id]) {
+      el.classList.add('checked');
+      el.closest('.task-item').classList.add('done');
+    }
+  });
   updateProgress();
 }
 
