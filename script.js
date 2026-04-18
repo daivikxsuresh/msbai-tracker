@@ -76,6 +76,7 @@ function loadState() {
     }
   });
   updateProgress();
+  saveState(); // persist any hardcoded HTML checked states to shared storage
 }
 
 document.addEventListener('DOMContentLoaded', loadState);
