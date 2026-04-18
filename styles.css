@@ -116,6 +116,49 @@ a:hover { text-decoration: underline; }
   margin-top: 0.2rem;
 }
 
+/* ── PHASE SECTION PROGRESS ──────────────────────────────── */
+.phase-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: -0.5rem 0 1.2rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.phase-mini-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+.phase-mini-bar-bg {
+  flex: 1;
+  height: 6px;
+  background: var(--border-light);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.phase-mini-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--stern-purple), var(--stern-purple-light));
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+.phase-mini-pct {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--stern-purple);
+  min-width: 2.5rem;
+  text-align: right;
+}
+
 /* ── PROGRESS BAR ────────────────────────────────────────── */
 .progress-section {
   max-width: 1100px;
