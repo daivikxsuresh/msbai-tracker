@@ -9,6 +9,7 @@
 </head>
 <body data-page="module-2">
 
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-brand">
     <div class="nav-logo">NYU</div>
@@ -22,17 +23,19 @@
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <h1>Module 2 <span>Summer 2026</span></h1>
-  <p class="hero-sub">Databases, Big Data, Python, and Decision Models — NYC.</p>
+  <p class="hero-sub">Databases, Big Data, Python &amp; Decision Models &mdash; NYC, June 8&ndash;12.</p>
   <div class="hero-stats">
     <div><div class="hero-stat-val">4</div><div class="hero-stat-label">Courses</div></div>
-    <div><div class="hero-stat-val">5</div><div class="hero-stat-label">Credits</div></div>
-    <div><div class="hero-stat-val">May 26 &ndash; Jul 12</div><div class="hero-stat-label">Module Span</div></div>
-    <div><div class="hero-stat-val">NYC</div><div class="hero-stat-label">Location</div></div>
+    <div><div class="hero-stat-val">May 27 &ndash; Jul 12</div><div class="hero-stat-label">Module Span</div></div>
+    <div><div class="hero-stat-val">5</div><div class="hero-stat-label">In-Person Days</div></div>
+    <div><div class="hero-stat-val">Jul 12</div><div class="hero-stat-label">All Due</div></div>
   </div>
 </section>
 
+<!-- PROGRESS -->
 <div class="progress-section">
   <div class="progress-card">
     <div class="progress-header">
@@ -48,116 +51,332 @@
 <div class="main">
 <a href="index.html" class="back-link">&larr; Back to full-year tracker</a>
 
-<div class="tbd-banner">
-  <span>&#9432;</span>
-  <div><strong>Base schedule.</strong> Only dates confirmed on the official curriculum schedule are shown. Sessions, readings, and assignment tasks will be added here once released.</div>
-</div>
-
-<!-- PRE-MODULE -->
-<section class="phase" id="pre-module">
+<!-- ═══════════ PRE-MODULE ═══════════ -->
+<section class="phase" id="pre-module" data-section="pre-module">
   <div class="phase-header">
     <span class="phase-badge">Phase 1</span>
     <span class="phase-title">Pre-Module</span>
-    <span class="phase-dates">May 26 &ndash; Jun 7, 2026</span>
+    <span class="phase-dates">May 27 &ndash; June 7, 2026</span>
+  </div>
+  <div class="phase-progress-row">
+    <span class="phase-mini-label">Pre-Module Progress</span>
+    <div class="phase-mini-bar-bg"><div class="phase-mini-bar-fill" style="width:0%"></div></div>
+    <span class="phase-mini-pct">0%</span>
   </div>
 
+  <!-- DATABASES FOR BUSINESS ANALYTICS -->
   <div class="course-block open">
     <div class="course-header" onclick="toggleCourse(this)">
-      <div class="course-dot dot-purple"></div>
+      <div class="course-dot dot-blue"></div>
       <div class="course-name">Databases for Business Analytics</div>
-      <div class="course-prof">1 credit</div>
+      <div class="course-prof">Prof. Panos Ipeirotis &mdash; 1.5 credits</div>
       <div class="course-toggle">&#9660;</div>
     </div>
-    <div class="course-body"><p style="font-size:0.78rem;color:var(--text-3);padding:0.6rem 0;">Pre-Module window: May 26 &ndash; Jun 7. Details to be added.</p></div>
+    <div class="course-body">
+      <p style="font-size:0.78rem;color:var(--text-2);margin-bottom:0.8rem;">
+        TA: Minguy Liu (ml8745@stern.nyu.edu) &mdash; Software: ERD Plus + Google Cloud BigQuery &mdash; Notes: <a href="https://github.com/ipeirotis/introduction-to-databases" target="_blank">github.com/ipeirotis/introduction-to-databases</a>
+      </p>
+
+      <div style="margin-bottom:0.8rem;padding:10px 14px;background:var(--stern-purple-glow2);border:1px solid var(--border-light);border-radius:8px;font-size:0.77rem;color:var(--text-1);">
+        <strong>Grade breakdown:</strong> Pre-module assignment 5% &bull; 2x Pre-module quizzes 10% &bull; Participation 5% &bull; Post-module assignment 10% &bull; 4x Post-module quizzes 40% &bull; Final Exam 30%
+      </div>
+
+      <p style="font-size:0.72rem;color:var(--text-3);margin-bottom:0.6rem;font-weight:600;">ASSIGNMENT 1 — BIGQUERY SETUP (5%)</p>
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Go to <strong>console.cloud.google.com</strong> &rarr; create a New Project, select "nyu.edu" as organization</div><span class="task-due due-soon">Before Jun 8</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Go to <strong>console.cloud.google.com/bigquery?project=nyu-datasets</strong> and star the "nyu-datasets" project</div><span class="task-due due-soon">Before Jun 8</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Run query: <code style="font-family:var(--mono);font-size:0.72rem;">SELECT * FROM `nyu-datasets.citibike.m_dataset` LIMIT 1000</code> &mdash; confirm it runs</div><span class="task-due due-soon">Before Jun 8</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Submit screenshot</strong> to Brightspace showing query results + starred nyu-datasets project</div><span class="task-due due-soon">Before Jun 8</span></li>
+      </ul>
+
+      <p style="font-size:0.72rem;color:var(--text-3);margin:0.8rem 0 0.6rem;font-weight:600;">PRE-MODULE QUIZZES (10% total)</p>
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Watch <strong>SQL basics videos</strong> on Brightspace (Content &gt; Module 2) &mdash; column selection &amp; row filtering</div><span class="task-due due-upcoming">Before quizzes</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Complete <strong>Pre-module Quiz 1</strong> on Brightspace</div><span class="task-due due-soon">Before Jun 8</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Complete <strong>Pre-module Quiz 2</strong> on Brightspace</div><span class="task-due due-soon">Before Jun 8</span></li>
+      </ul>
+    </div>
   </div>
 
+  <!-- BIG DATA -->
   <div class="course-block open">
     <div class="course-header" onclick="toggleCourse(this)">
       <div class="course-dot dot-purple"></div>
       <div class="course-name">Big Data</div>
-      <div class="course-prof">1 credit</div>
+      <div class="course-prof">Prof. Ramesh Shankar &mdash; 1 credit</div>
       <div class="course-toggle">&#9660;</div>
     </div>
-    <div class="course-body"><p style="font-size:0.78rem;color:var(--text-3);padding:0.6rem 0;">Pre-Module window: May 26 &ndash; Jun 7. Details to be added.</p></div>
+    <div class="course-body">
+      <p style="font-size:0.78rem;color:var(--text-2);margin-bottom:0.8rem;">
+        rshankar@stern.nyu.edu &mdash; Software: Google Cloud Platform (GCP) &mdash; credit card required, $300 free credits provided
+      </p>
+
+      <div style="margin-bottom:0.8rem;padding:10px 14px;background:var(--stern-purple-glow2);border:1px solid var(--border-light);border-radius:8px;font-size:0.77rem;color:var(--text-1);">
+        <strong>Grade breakdown:</strong> 3x Pre-module quizzes 25% &bull; 3x Post-module quizzes 75%
+      </div>
+
+      <p style="font-size:0.72rem;color:var(--text-3);margin-bottom:0.6rem;font-weight:600;">GCP HANDS-ON ZOOM CLASS (attendance required)</p>
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Attend GCP Hands-On Zoom</strong> &mdash; May 30, 9&ndash;11 AM ET &mdash; Google Storage, BigQuery, DataProc, PySpark overview</div><span class="task-due due-soon">May 30 (past)</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Sign up for Google Cloud Platform with credit card &mdash; activate $300 free trial (90 days)</div><span class="task-due due-soon">Before Jun 9</span></li>
+      </ul>
+
+      <p style="font-size:0.72rem;color:var(--text-3);margin:0.8rem 0 0.6rem;font-weight:600;">BACKGROUND READINGS (required)</p>
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Watch <strong>Barnatt YouTube video</strong> &mdash; why big data grew, how Hadoop helps, opportunities in analytics</div><span class="task-due due-upcoming">Before Jun 7</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Read <strong>Medium: History of Hadoop</strong> &mdash; how Hadoop satisfied emerging technical needs</div><span class="task-due due-upcoming">Before Jun 7</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Read <strong>opensource.com: Intro to Hadoop &amp; Big Data</strong> &mdash; technical architecture overview</div><span class="task-due due-upcoming">Before Jun 7</span></li>
+      </ul>
+
+      <p style="font-size:0.72rem;color:var(--text-3);margin:0.8rem 0 0.6rem;font-weight:600;">PRE-MODULE QUIZZES (25%) &mdash; Due June 7, midnight ET</p>
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Quiz 1:</strong> Basics of Google Cloud Platform (4%)</div><span class="task-due due-soon">Jun 7</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Quiz 2:</strong> Google Storage and BigQuery Hands-on basics (8%)</div><span class="task-due due-soon">Jun 7</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Quiz 3:</strong> PySpark Hands-on basics (8%)</div><span class="task-due due-soon">Jun 7</span></li>
+      </ul>
+    </div>
   </div>
 
+  <!-- DEALING WITH DATA -->
   <div class="course-block open">
     <div class="course-header" onclick="toggleCourse(this)">
       <div class="course-dot dot-green"></div>
       <div class="course-name">Dealing with Data Using Python</div>
-      <div class="course-prof">1 credit</div>
+      <div class="course-prof">Prof. Panos Ipeirotis &mdash; 1 credit</div>
       <div class="course-toggle">&#9660;</div>
     </div>
-    <div class="course-body"><p style="font-size:0.78rem;color:var(--text-3);padding:0.6rem 0;">Pre-Module window: May 26 &ndash; Jun 7. Details to be added.</p></div>
+    <div class="course-body">
+      <p style="font-size:0.78rem;color:var(--text-2);margin-bottom:0.8rem;">
+        panos@stern.nyu.edu &mdash; Software: Google Colab, MySQL Workbench, iPython &mdash; Notes: <a href="https://github.com/ipeirotis/dealing_with_data" target="_blank">github.com/ipeirotis/dealing_with_data</a>
+      </p>
+
+      <div style="margin-bottom:0.8rem;padding:10px 14px;background:var(--stern-purple-glow2);border:1px solid var(--border-light);border-radius:8px;font-size:0.77rem;color:var(--text-1);">
+        <strong>Grade breakdown:</strong> Class participation &amp; exercises (in-class) &bull; 2 individual post-module assignments &mdash; Due Jul 12
+      </div>
+
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Access Google Colab</strong> and <strong>MySQL Workbench</strong> &mdash; follow setup instructions on Brightspace</div><span class="task-due due-soon">Before Jun 10</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Read <strong>Introduction to Python notebooks</strong>: <a href="https://github.com/ipeirotis/introduction-to-python" target="_blank">github.com/ipeirotis/introduction-to-python</a> &mdash; work through all notebooks. <em>Critical if you have limited programming experience.</em></div><span class="task-due due-soon">Before Jun 10</span></li>
+      </ul>
+    </div>
   </div>
 
+  <!-- DECISION MODELS -->
   <div class="course-block open">
     <div class="course-header" onclick="toggleCourse(this)">
       <div class="course-dot dot-purple"></div>
-      <div class="course-name">Decision Models</div>
-      <div class="course-prof">2 credits</div>
+      <div class="course-name">Decision Models &amp; Analytics</div>
+      <div class="course-prof">Prof. Jiawei Zhang &mdash; 2 credits</div>
       <div class="course-toggle">&#9660;</div>
     </div>
-    <div class="course-body"><p style="font-size:0.78rem;color:var(--text-3);padding:0.6rem 0;">Pre-Module window: May 26 &ndash; Jun 7. Details to be added.</p></div>
+    <div class="course-body">
+      <p style="font-size:0.78rem;color:var(--text-2);margin-bottom:0.8rem;">
+        jz31@stern.nyu.edu &mdash; Software: Excel Solver + Oracle Crystal Ball (via <a href="https://apps.stern.nyu.edu" target="_blank">apps.stern.nyu.edu</a>) &mdash; Textbooks: Baker (Optimization), Charnes (Crystal Ball) &mdash; free via NYU Libraries
+      </p>
+
+      <div style="margin-bottom:0.8rem;padding:10px 14px;background:var(--stern-purple-glow2);border:1px solid var(--border-light);border-radius:8px;font-size:0.77rem;color:var(--text-1);">
+        <strong>Grade breakdown:</strong> Pre-module Assignment 20% &bull; In-Class Models 20% &bull; Post-module Group Assignment 30% &bull; Post-module Individual Assignment 30%
+      </div>
+
+      <p style="font-size:0.72rem;color:var(--text-3);margin-bottom:0.6rem;font-weight:600;">READING &amp; SETUP</p>
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Read <strong>Chapters 1&ndash;2</strong> of <em>Optimization Modeling with Spreadsheets</em> (Baker, 2015) &mdash; focus on Section 1.5 "Using Solver" (NYU VPN may be needed)</div><span class="task-due due-soon">Before Jun 11</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Download <strong>premodule Data and Templates.zip</strong> from Brightspace</div><span class="task-due due-soon">Before starting assignment</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Enable <strong>Solver add-in</strong> in Excel or log into <a href="https://apps.stern.nyu.edu" target="_blank">apps.stern.nyu.edu</a> for Stern Apps access</div><span class="task-due due-soon">Before Problem 3</span></li>
+      </ul>
+
+      <p style="font-size:0.72rem;color:var(--text-3);margin:0.8rem 0 0.6rem;font-weight:600;">PRE-MODULE ASSIGNMENT (20% of grade) &mdash; Individual</p>
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Problem 1: Ordering a New Product</strong> (6 pts) &mdash; 1-page report on optimal order quantity. Use historical data from OrderingNewProduct_Data.xls. Price $100, cost $75, salvage $25, ML forecast 200 units.</div><span class="task-due due-soon">Before Jun 11</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Problem 2: Sailco Production Planning</strong> (6 pts) &mdash; 1-page report on production plan for next 4 quarters. Use Sailco_Data.xlsx. Capacity 600/qtr, overtime cost $200/unit, holding cost $60/sailboat.</div><span class="task-due due-soon">Before Jun 11</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Problem 3: Online Advertising</strong> (8 pts) &mdash; Build LP model in Excel Solver to maximize Washington Post click-through revenue ($2.60/click) across GEICO, Delta, T-Mobile, Capital One. Submit Excel file (no report needed).</div><span class="task-due due-soon">Before Jun 11</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Submit pre-module assignment files to Brightspace</div><span class="task-due due-soon">Before Jun 11</span></li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<!-- IN-PERSON -->
-<section class="phase" id="in-person">
+<!-- ═══════════ IN-PERSON MODULE ═══════════ -->
+<section class="phase" id="in-person" data-section="in-person">
   <div class="phase-header">
     <span class="phase-badge">Phase 2</span>
     <span class="phase-title">In-Person Module (NYC)</span>
     <span class="phase-dates">Jun 8 &ndash; Jun 12, 2026</span>
   </div>
+  <div class="phase-progress-row">
+    <span class="phase-mini-label">In-Person Progress</span>
+    <div class="phase-mini-bar-bg"><div class="phase-mini-bar-fill" style="width:0%"></div></div>
+    <span class="phase-mini-pct">0%</span>
+  </div>
 
   <div class="course-block open">
     <div class="course-header" onclick="toggleCourse(this)">
       <div class="course-dot dot-purple"></div>
-      <div class="course-name">In-Class Schedule</div>
-      <div class="course-prof">Confirmed dates only</div>
+      <div class="course-name">Full Week Schedule &mdash; NYU Stern</div>
+      <div class="course-prof">In-Person | 5 Days | Classroom 2-100, Meals: Commons Lounge</div>
       <div class="course-toggle">&#9660;</div>
     </div>
     <div class="course-body">
       <table class="schedule-table">
-        <thead><tr><th>Date</th><th>Course</th><th>Credits</th><th>Format</th></tr></thead>
+        <thead><tr><th>Day</th><th>Time</th><th>Event</th><th>Location</th></tr></thead>
         <tbody>
-          <tr><td>Mon, Jun 8</td><td>Databases for Business Analytics</td><td>1</td><td><span class="badge-inperson">NYC</span></td></tr>
-          <tr><td>Tue, Jun 9</td><td>Big Data</td><td>1</td><td><span class="badge-inperson">NYC</span></td></tr>
-          <tr><td>Wed, Jun 10</td><td>Dealing with Data Using Python</td><td>1</td><td><span class="badge-inperson">NYC</span></td></tr>
-          <tr><td>Thu, Jun 11 &ndash; Fri, Jun 12</td><td>Decision Models</td><td>2</td><td><span class="badge-inperson">NYC</span></td></tr>
+          <!-- MONDAY JUNE 8 — Databases -->
+          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Monday, June 8 &mdash; Databases for Business Analytics | Prof. Ipeirotis &mdash; Classroom: 2-100</td></tr>
+          <tr><td></td><td>8:00&ndash;8:30 AM</td><td>Breakfast</td><td><span class="badge-inperson">Commons Lounge</span></td></tr>
+          <tr><td></td><td>8:30&ndash;10:30 AM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>10:30&ndash;11:00 AM</td><td>Break</td><td></td></tr>
+          <tr><td></td><td>11:00 AM&ndash;12:30 PM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>12:30&ndash;1:30 PM</td><td>Lunch &amp; Virtual Business Library Intro</td><td><span class="badge-inperson">Commons Lounge</span></td></tr>
+          <tr><td></td><td>1:30&ndash;3:30 PM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>3:30&ndash;4:00 PM</td><td>Break</td><td></td></tr>
+          <tr><td></td><td>4:00&ndash;5:30 PM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>Evening</td><td>Free</td><td></td></tr>
+
+          <!-- TUESDAY JUNE 9 — Big Data -->
+          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Tuesday, June 9 &mdash; Big Data | Prof. Shankar &mdash; Classroom: 2-100</td></tr>
+          <tr><td></td><td>8:00&ndash;8:30 AM</td><td>Breakfast</td><td><span class="badge-inperson">Commons Lounge</span></td></tr>
+          <tr><td></td><td>8:30&ndash;10:30 AM</td><td>Session 1: Hadoop demo on AWS &mdash; HDFS, Sqoop, Pig, Hive (observation only)</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>10:30&ndash;11:00 AM</td><td>Break</td><td></td></tr>
+          <tr><td></td><td>11:00 AM&ndash;12:30 PM</td><td>Session 2: GCP &mdash; file storage, BigQuery SQL queries</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>12:30&ndash;1:30 PM</td><td>Lunch</td><td><span class="badge-inperson">Commons Lounge</span></td></tr>
+          <tr><td></td><td>1:30&ndash;3:30 PM</td><td>Session 3: GCP PySpark &mdash; DataFrames &amp; data transformation</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>3:30&ndash;4:00 PM</td><td>Break</td><td></td></tr>
+          <tr><td></td><td>4:00&ndash;5:30 PM</td><td>Session 4: Recommender Systems with PySpark (Alternating Least Squares)</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>5:30&ndash;5:45 PM</td><td>Break</td><td></td></tr>
+          <tr><td></td><td>5:45&ndash;7:00 PM</td><td><strong>Capstone Team Presentations</strong></td><td><span class="badge-inperson">2-100</span></td></tr>
+
+          <!-- WEDNESDAY JUNE 10 — Dealing with Data -->
+          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Wednesday, June 10 &mdash; Dealing with Data Using Python | Prof. Ipeirotis &mdash; Classroom: 2-100</td></tr>
+          <tr><td></td><td>8:00&ndash;8:30 AM</td><td>Breakfast</td><td><span class="badge-inperson">Commons Lounge</span></td></tr>
+          <tr><td></td><td>8:30&ndash;10:30 AM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>10:30&ndash;11:00 AM</td><td>Break</td><td></td></tr>
+          <tr><td></td><td>11:00 AM&ndash;12:30 PM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>12:30&ndash;1:30 PM</td><td>Lunch &amp; Career Resources Introduction</td><td><span class="badge-inperson">Commons Lounge</span></td></tr>
+          <tr><td></td><td>1:30&ndash;3:30 PM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>3:30&ndash;4:00 PM</td><td>Break</td><td></td></tr>
+          <tr><td></td><td>4:00&ndash;5:30 PM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>6:00&ndash;10:00 PM</td><td><strong>Boat Cruise</strong></td><td><span class="badge-inperson">TBD</span></td></tr>
+
+          <!-- THURSDAY JUNE 11 — Decision Models Day 1 -->
+          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Thursday, June 11 &mdash; Decision Models (Day 1) | Prof. Zhang &mdash; Classroom: 2-100</td></tr>
+          <tr><td></td><td>8:00&ndash;8:30 AM</td><td>Breakfast</td><td><span class="badge-inperson">Commons Lounge</span></td></tr>
+          <tr><td></td><td>8:30&ndash;10:30 AM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>10:30&ndash;11:00 AM</td><td>Break</td><td></td></tr>
+          <tr><td></td><td>11:00 AM&ndash;12:30 PM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>12:30&ndash;1:30 PM</td><td>Lunch</td><td><span class="badge-inperson">Commons Lounge</span></td></tr>
+          <tr><td></td><td>1:30&ndash;3:30 PM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>3:30&ndash;4:00 PM</td><td>Break</td><td></td></tr>
+          <tr><td></td><td>4:00&ndash;5:30 PM</td><td>Class &mdash; submit in-class models</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>Evening</td><td>Free</td><td></td></tr>
+
+          <!-- FRIDAY JUNE 12 — Decision Models Day 2 -->
+          <tr style="background:var(--stern-purple-glow2)"><td colspan="4" style="font-weight:700;color:var(--stern-purple);">Friday, June 12 &mdash; Decision Models (Day 2) | Prof. Zhang &mdash; Classroom: 2-100</td></tr>
+          <tr><td></td><td>8:00&ndash;8:30 AM</td><td>Breakfast</td><td><span class="badge-inperson">Commons Lounge</span></td></tr>
+          <tr><td></td><td>8:30&ndash;10:30 AM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>10:30&ndash;11:00 AM</td><td>Break</td><td></td></tr>
+          <tr><td></td><td>11:00 AM&ndash;12:30 PM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>12:30&ndash;1:30 PM</td><td>Lunch &mdash; Module 2 Wrap / Module 3 Preview</td><td><span class="badge-inperson">Commons Lounge</span></td></tr>
+          <tr><td></td><td>1:30&ndash;3:30 PM</td><td>Class</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>3:30&ndash;4:00 PM</td><td>Break</td><td></td></tr>
+          <tr><td></td><td>4:00&ndash;5:30 PM</td><td>Class &mdash; submit in-class models</td><td><span class="badge-inperson">2-100</span></td></tr>
+          <tr><td></td><td>Evening</td><td>Free &mdash; Safe travels home!</td><td></td></tr>
         </tbody>
       </table>
-      <p style="font-size:0.76rem;color:var(--text-3);padding:0.6rem 0;font-style:italic;">Times, rooms, and session topics will be added once released.</p>
+
+      <ul class="task-list" style="margin-top:1rem;">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Databases for Business Analytics</strong> &mdash; Monday June 8</div><span class="task-due due-info">Jun 8</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Big Data</strong> &mdash; Tuesday June 9 (hands-on GCP exercises Sess. 2&ndash;4)</div><span class="task-due due-info">Jun 9</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Capstone Team Presentations</strong> &mdash; Tuesday June 9, 5:45&ndash;7:00 PM</div><span class="task-due due-info">Jun 9</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Dealing with Data Using Python</strong> &mdash; Wednesday June 10</div><span class="task-due due-info">Jun 10</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Boat Cruise</strong> &mdash; Wednesday June 10, 6:00&ndash;10:00 PM</div><span class="task-due due-info">Jun 10</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Decision Models Day 1</strong> &mdash; Thursday June 11 &mdash; bring laptop with Solver/Crystal Ball ready</div><span class="task-due due-info">Jun 11</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text">Attend <strong>Decision Models Day 2</strong> &mdash; Friday June 12</div><span class="task-due due-info">Jun 12</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Submit in-class models</strong> (Decision Models) &mdash; 20% of grade</div><span class="task-due due-info">Jun 11&ndash;12</span></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- POST-MODULE -->
-<section class="phase" id="post-module">
+<!-- ═══════════ POST-MODULE ═══════════ -->
+<section class="phase" id="post-module" data-section="post-module">
   <div class="phase-header">
     <span class="phase-badge">Phase 3</span>
     <span class="phase-title">Post-Module</span>
     <span class="phase-dates">Jun 13 &ndash; Jul 12, 2026</span>
   </div>
+  <div class="phase-progress-row">
+    <span class="phase-mini-label">Post-Module Progress</span>
+    <div class="phase-mini-bar-bg"><div class="phase-mini-bar-fill" style="width:0%"></div></div>
+    <span class="phase-mini-pct">0%</span>
+  </div>
 
+  <!-- Databases Post-Module -->
   <div class="course-block open">
     <div class="course-header" onclick="toggleCourse(this)">
-      <div class="course-dot dot-purple"></div>
-      <div class="course-name">Module 2 Post-Module Deliverables</div>
-      <div class="course-prof">All 4 courses</div>
+      <div class="course-dot dot-blue"></div>
+      <div class="course-name">Databases for Business Analytics &mdash; Post-Module</div>
+      <div class="course-prof">Prof. Panos Ipeirotis</div>
       <div class="course-toggle">&#9660;</div>
     </div>
     <div class="course-body">
-      <table class="schedule-table">
-        <thead><tr><th>Course</th><th>Credits</th><th>Post-Module Due</th></tr></thead>
-        <tbody>
-          <tr><td>Databases for Business Analytics</td><td>1</td><td>Jul 12, 2026</td></tr>
-          <tr><td>Big Data</td><td>1</td><td>Jul 12, 2026</td></tr>
-          <tr><td>Dealing with Data Using Python</td><td>1</td><td>Jul 12, 2026</td></tr>
-          <tr><td>Decision Models</td><td>2</td><td>Jul 12, 2026</td></tr>
-        </tbody>
-      </table>
-      <p style="font-size:0.76rem;color:var(--text-3);padding:0.6rem 0;font-style:italic;">Specific assignments, exams, and grading breakdown will be added per course syllabus.</p>
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Post-Module Assignment</strong> (10%) &mdash; SQL/BigQuery hands-on analysis</div><span class="task-due due-soon">Jul 12</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Post-Module Quiz 1</strong> (10%)</div><span class="task-due due-soon">Jul 12</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Post-Module Quiz 2</strong> (10%)</div><span class="task-due due-soon">Jul 12</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Post-Module Quiz 3</strong> (10%)</div><span class="task-due due-soon">Jul 12</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Post-Module Quiz 4</strong> (10%)</div><span class="task-due due-soon">Jul 12</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Final Exam</strong> (30%) &mdash; timed, 2 hours</div><span class="task-due due-soon">Jul 12</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Big Data Post-Module -->
+  <div class="course-block open">
+    <div class="course-header" onclick="toggleCourse(this)">
+      <div class="course-dot dot-purple"></div>
+      <div class="course-name">Big Data &mdash; Post-Module</div>
+      <div class="course-prof">Prof. Ramesh Shankar &mdash; Available Jun 13</div>
+      <div class="course-toggle">&#9660;</div>
+    </div>
+    <div class="course-body">
+      <p style="font-size:0.78rem;color:var(--text-2);margin-bottom:0.6rem;">Quizzes 2 &amp; 3 also have a code submission link under Assignments. No separate grade, but code will be evaluated.</p>
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Quiz 1:</strong> Hadoop Architecture Follow-up exercises (25%)</div><span class="task-due due-soon">Jul 12</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Quiz 2:</strong> GCP BigQuery Follow-up exercises (25%) + submit code via Assignments link</div><span class="task-due due-soon">Jul 12</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Quiz 3:</strong> PySpark DataFrames Follow-up exercises (25%) + submit code via Assignments link</div><span class="task-due due-soon">Jul 12</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Dealing with Data Post-Module -->
+  <div class="course-block open">
+    <div class="course-header" onclick="toggleCourse(this)">
+      <div class="course-dot dot-green"></div>
+      <div class="course-name">Dealing with Data Using Python &mdash; Post-Module</div>
+      <div class="course-prof">Prof. Panos Ipeirotis</div>
+      <div class="course-toggle">&#9660;</div>
+    </div>
+    <div class="course-body">
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Assignment 1:</strong> BigQuery database interaction using Python &mdash; analyze a massive dataset</div><span class="task-due due-soon">Jul 12</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Assignment 2:</strong> Web APIs data retrieval &amp; analysis using Python (includes ChatGPT API for automation)</div><span class="task-due due-soon">Jul 12</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Decision Models Post-Module -->
+  <div class="course-block open">
+    <div class="course-header" onclick="toggleCourse(this)">
+      <div class="course-dot dot-purple"></div>
+      <div class="course-name">Decision Models &amp; Analytics &mdash; Post-Module</div>
+      <div class="course-prof">Prof. Jiawei Zhang</div>
+      <div class="course-toggle">&#9660;</div>
+    </div>
+    <div class="course-body">
+      <ul class="task-list">
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Individual Assignment</strong> (30%) &mdash; optimization &amp; simulation modeling in Excel</div><span class="task-due due-soon">Jul 12</span></li>
+        <li class="task-item"><div class="task-check" onclick="toggleCheck(this)"></div><div class="task-text"><strong>Group Assignment</strong> (30%) &mdash; team-based decision modeling project</div><span class="task-due due-soon">Jul 12</span></li>
+      </ul>
     </div>
   </div>
 </section>
