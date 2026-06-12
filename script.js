@@ -311,3 +311,177 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   buildDeck();
 });
+
+/* ══════════════════════════════════════════════════════════
+   v4 — Up Next agenda · Confetti · Live favicon · Hairline
+══════════════════════════════════════════════════════════ */
+
+/* ── Scroll hairline ────────────────────────────────────── */
+function initHairline() {
+  const bar = document.createElement('div');
+  bar.className = 'scroll-hairline';
+  document.body.appendChild(bar);
+  const onScroll = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+/* ── Live favicon: a progress donut in Stern purple ─────── */
+function updateFavicon() {
+  const total = document.querySelectorAll('.task-check').length;
+  if (!total) return;
+  const checked = document.querySelectorAll('.task-check.checked').length;
+  const p = checked / total;
+  const c = document.createElement('canvas');
+  c.width = c.height = 64;
+  const x = c.getContext('2d');
+  x.lineWidth = 10;
+  x.strokeStyle = 'rgba(87,6,140,0.22)';
+  x.beginPath(); x.arc(32, 32, 24, 0, Math.PI * 2); x.stroke();
+  x.strokeStyle = '#57068c';
+  x.lineCap = 'round';
+  x.beginPath(); x.arc(32, 32, 24, -Math.PI / 2, -Math.PI / 2 + p * Math.PI * 2); x.stroke();
+  x.fillStyle = '#57068c';
+  x.font = '700 22px Inter, sans-serif';
+  x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.fillText(Math.round(p * 100), 32, 34);
+  let link = document.querySelector('link[rel="icon"]');
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+  }
+  link.href = c.toDataURL('image/png');
+  // Mirror in the tab title
+  const base = document.title.replace(/^\(\d+%\)\s*/, '');
+  document.title = '(' + Math.round(p * 100) + '%) ' + base;
+}
+
+/* ── Confetti (zero-dependency canvas burst) ────────────── */
+function confetti(big) {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let cv = document.getElementById('confettiCanvas');
+  if (!cv) {
+    cv = document.createElement('canvas');
+    cv.id = 'confettiCanvas';
+    document.body.appendChild(cv);
+  }
+  cv.width = innerWidth; cv.height = innerHeight;
+  const ctx = cv.getContext('2d');
+  const colors = ['#57068c', '#8b3dc4', '#b07ad9', '#d9b8f5', '#fbbf24', '#ffffff'];
+  const N = big ? 160 : 60;
+  const parts = Array.from({ length: N }, () => ({
+    x: innerWidth / 2 + (Math.random() - 0.5) * innerWidth * (big ? 0.6 : 0.25),
+    y: big ? innerHeight * 0.35 : innerHeight * 0.5,
+    vx: (Math.random() - 0.5) * 14,
+    vy: -Math.random() * 14 - 4,
+    w: 5 + Math.random() * 6,
+    h: 8 + Math.random() * 6,
+    rot: Math.random() * Math.PI,
+    vr: (Math.random() - 0.5) * 0.3,
+    color: colors[Math.floor(Math.random() * colors.length)],
+  }));
+  const t0 = performance.now();
+  (function frame(now) {
+    const elapsed = now - t0;
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    let alive = false;
+    for (const p of parts) {
+      p.vy += 0.35; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      if (p.y < cv.height + 30) alive = true;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.globalAlpha = Math.max(0, 1 - elapsed / 2600);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    }
+    if (alive && elapsed < 2800) requestAnimationFrame(frame);
+    else ctx.clearRect(0, 0, cv.width, cv.height);
+  })(t0);
+}
+
+/* Celebrate when a phase section or the whole page crosses 100% */
+let lastSectionPcts = {};
+function celebrateIfComplete() {
+  document.querySelectorAll('.phase[data-section]').forEach(section => {
+    const key = section.dataset.section;
+    const total = section.querySelectorAll('.task-check').length;
+    const checked = section.querySelectorAll('.task-check.checked').length;
+    const p = total === 0 ? 0 : checked / total;
+    if (p === 1 && lastSectionPcts[key] !== undefined && lastSectionPcts[key] < 1) confetti(false);
+    lastSectionPcts[key] = p;
+  });
+  const total = document.querySelectorAll('.task-check').length;
+  const checked = document.querySelectorAll('.task-check.checked').length;
+  if (total > 0 && checked === total &&
+      lastSectionPcts.__page !== undefined && lastSectionPcts.__page < 1) confetti(true);
+  lastSectionPcts.__page = total > 0 ? checked / total : 0;
+}
+
+/* ── Up Next agenda (module pages) ──────────────────────── */
+function buildUpNext() {
+  if (!/^module-/.test(document.body.dataset.page || '')) return;
+  const anchor = document.querySelector('.progress-section');
+  if (!anchor) return;
+  let wrap = document.getElementById('upNext');
+  if (!wrap) {
+    wrap = document.createElement('div');
+    wrap.id = 'upNext';
+    wrap.className = 'upnext';
+    anchor.after(wrap);
+  }
+  const pending = [...document.querySelectorAll('.task-item:not(.done)')].slice(0, 6);
+  const remaining = document.querySelectorAll('.task-item:not(.done)').length;
+  if (pending.length === 0) {
+    wrap.innerHTML = '<div class="upnext-card"><div class="upnext-head">' +
+      '<span class="upnext-title">⚡ Up Next</span></div>' +
+      '<div class="upnext-empty">Everything here is done. Module conquered. 👑</div></div>';
+    return;
+  }
+  const rows = pending.map((item, i) => {
+    const text = item.querySelector('.task-text')?.textContent.trim().replace(/\s+/g, ' ') || '';
+    const due = item.querySelector('.task-due');
+    const dueHtml = due ? '<span class="nx-due ' + due.className.replace('task-due', '').trim() + '">' + due.textContent + '</span>' : '';
+    item.dataset.nx = i;
+    return '<li class="upnext-item" data-target="' + i + '"><span class="nx-arrow">→</span>' +
+      '<span class="nx-text">' + text.slice(0, 110) + '</span>' + dueHtml + '</li>';
+  }).join('');
+  wrap.innerHTML = '<div class="upnext-card"><div class="upnext-head">' +
+    '<span class="upnext-title">⚡ Up Next</span>' +
+    '<span class="upnext-count">' + remaining + ' task' + (remaining === 1 ? '' : 's') + ' left</span></div>' +
+    '<ul class="upnext-list">' + rows + '</ul></div>';
+  wrap.querySelectorAll('.upnext-item').forEach(li => {
+    li.onclick = () => {
+      const target = document.querySelector('.task-item[data-nx="' + li.dataset.target + '"]');
+      if (!target) return;
+      const block = target.closest('.course-block');
+      if (block && !block.classList.contains('open')) block.classList.add('open');
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.classList.remove('flash');
+      requestAnimationFrame(() => target.classList.add('flash'));
+      setTimeout(() => target.classList.remove('flash'), 1700);
+    };
+  });
+}
+
+/* Hook into the existing save cycle without touching it */
+const _origToggleCheck = toggleCheck;
+toggleCheck = function (el) {
+  _origToggleCheck(el);
+  buildUpNext();
+  updateFavicon();
+  celebrateIfComplete();
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  initHairline();
+  buildUpNext();
+  updateFavicon();
+  celebrateIfComplete(); // seed baseline so loading a done page doesn't fire confetti
+});
