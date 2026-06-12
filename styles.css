@@ -809,3 +809,225 @@ a:hover { text-decoration: underline; }
   .course-prof { display: none; }
   .phase-dates { display: none; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   v3 — Daivik's Command Deck · Dark Mode · Journey Ribbon
+══════════════════════════════════════════════════════════ */
+
+/* ── DARK THEME ──────────────────────────────────────────── */
+html[data-theme="dark"] {
+  --bg: #0d0814;
+  --bg-card: #171022;
+  --border: #2c1f3e;
+  --border-light: #221733;
+  --text-0: #f1eaf9;
+  --text-1: #d6c8ea;
+  --text-2: #a995c2;
+  --text-3: #7a6797;
+  --stern-purple-glow: rgba(139,61,196,0.22);
+  --stern-purple-glow2: rgba(139,61,196,0.10);
+  --green-bg: rgba(22,163,74,0.16);
+  --yellow-bg: rgba(202,138,4,0.16);
+  --red-bg: rgba(220,38,38,0.16);
+  --blue-bg: rgba(37,99,235,0.18);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.45);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.55);
+}
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(1100px 500px at 85% -200px, rgba(139,61,196,0.10), transparent 60%),
+    radial-gradient(900px 400px at -10% 30%, rgba(87,6,140,0.08), transparent 55%),
+    var(--bg);
+}
+html[data-theme="dark"] .progress-card { background: rgba(23,16,34,0.88); }
+html[data-theme="dark"] .due-soon     { color: #f87171; }
+html[data-theme="dark"] .due-upcoming { color: #fbbf24; }
+html[data-theme="dark"] .due-done     { color: #4ade80; }
+html[data-theme="dark"] .due-info     { color: #93c5fd; }
+html[data-theme="dark"] .badge-inperson { color: var(--stern-purple-lighter); }
+html[data-theme="dark"] a { color: var(--stern-purple-lighter); }
+html[data-theme="dark"] .module-loc { color: var(--stern-purple-lighter); }
+html, body { transition: background 0.3s ease, color 0.3s ease; }
+
+/* ── THEME TOGGLE (injected into nav) ────────────────────── */
+.theme-toggle {
+  background: rgba(139,61,196,0.15);
+  border: 1px solid rgba(139,61,196,0.35);
+  color: #fff;
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: grid;
+  place-items: center;
+  margin-left: 1rem;
+  transition: transform 0.25s var(--spring), background 0.2s;
+}
+.theme-toggle:hover { background: rgba(139,61,196,0.3); transform: rotate(20deg) scale(1.1); }
+.theme-toggle:active { transform: scale(0.9); }
+
+/* ── COMMAND DECK (index hero replacement content) ───────── */
+.deck {
+  max-width: 1100px;
+  margin: 1.6rem auto 0;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.9rem;
+  position: relative;
+  z-index: 10;
+}
+.deck-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+  box-shadow: var(--shadow-md);
+  animation: riseIn 0.55s var(--ease-out) both;
+  position: relative;
+  overflow: hidden;
+}
+.deck-card:nth-child(2) { animation-delay: 0.07s; }
+.deck-card:nth-child(3) { animation-delay: 0.14s; }
+.deck-card:nth-child(4) { animation-delay: 0.21s; }
+.deck-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--stern-purple), var(--stern-purple-light), transparent);
+}
+.deck-label {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-3);
+  margin-bottom: 0.35rem;
+}
+.deck-value {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-0);
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+.deck-value .unit { font-size: 0.8rem; font-weight: 600; color: var(--text-2); }
+.deck-sub { font-size: 0.72rem; color: var(--text-2); margin-top: 0.3rem; line-height: 1.45; }
+.deck-sub strong { color: var(--stern-purple); font-weight: 600; }
+html[data-theme="dark"] .deck-sub strong { color: var(--stern-purple-lighter); }
+.deck-pulse {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  margin-right: 0.4rem;
+  animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 8px rgba(22,163,74,0.6);
+}
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+
+/* ── JOURNEY RIBBON ──────────────────────────────────────── */
+.journey {
+  max-width: 1100px;
+  margin: 1.2rem auto 0;
+  padding: 0 1.5rem;
+}
+.journey-track {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.3rem 1.5rem 1.1rem;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  animation: riseIn 0.55s var(--ease-out) 0.28s both;
+}
+.journey-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  min-width: 0;
+}
+.journey-step::before {
+  content: '';
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--border);
+}
+.journey-step:last-child::before { display: none; }
+.journey-step.done::before { background: linear-gradient(90deg, var(--stern-purple), var(--stern-purple-light)); }
+.journey-dot {
+  position: relative;
+  z-index: 1;
+  width: 20px; height: 20px;
+  margin: 0 auto 0.45rem;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+  display: grid;
+  place-items: center;
+  font-size: 0.55rem;
+  font-weight: 800;
+  color: var(--text-3);
+  transition: transform 0.2s var(--spring);
+}
+.journey-step:hover .journey-dot { transform: scale(1.25); }
+.journey-step.done .journey-dot {
+  background: var(--stern-purple);
+  border-color: var(--stern-purple);
+  color: #fff;
+}
+.journey-step.now .journey-dot {
+  background: linear-gradient(135deg, var(--stern-purple), var(--stern-purple-light));
+  border-color: var(--stern-purple-light);
+  color: #fff;
+  box-shadow: 0 0 0 5px var(--stern-purple-glow), 0 0 16px rgba(139,61,196,0.5);
+  animation: nowPulse 2.4s ease-in-out infinite;
+}
+@keyframes nowPulse {
+  0%,100% { box-shadow: 0 0 0 4px var(--stern-purple-glow), 0 0 14px rgba(139,61,196,0.45); }
+  50%     { box-shadow: 0 0 0 8px var(--stern-purple-glow2), 0 0 22px rgba(139,61,196,0.65); }
+}
+.journey-name {
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1.3;
+}
+.journey-step.now .journey-name { color: var(--stern-purple); }
+html[data-theme="dark"] .journey-step.now .journey-name { color: var(--stern-purple-lighter); }
+.journey-when {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  color: var(--text-3);
+  margin-top: 0.1rem;
+}
+.journey-loc {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.25rem;
+  padding: 0.08rem 0.4rem;
+  border-radius: 3px;
+  background: var(--stern-purple-glow2);
+  color: var(--stern-purple);
+}
+html[data-theme="dark"] .journey-loc { color: var(--stern-purple-lighter); }
+.journey-loc.abu { background: var(--yellow-bg); color: var(--yellow); }
+
+@media (max-width: 768px) {
+  .deck { grid-template-columns: 1fr 1fr; }
+  .journey-when, .journey-loc { display: none; }
+  .journey-name { font-size: 0.56rem; }
+}
